@@ -96,13 +96,21 @@ class TodosTest {
         todos.add(epic);
         todos.add(meeting);
 
-        Task[] expected = {simpleTask, epic};
+        //найдено 2 задачи
+        Task[] expected = new Task[] { simpleTask, epic };
         Task[] actual = todos.search("хлеб");
 
         Assertions.assertArrayEquals(actual, expected);
 
-        actual = todos.search("кино");
+        //найдено 1 задача
+        expected = new Task[] { meeting };
+        actual = todos.search("Вечер");
+
+        Assertions.assertArrayEquals(actual, expected);
+
+        //найдена 0 задач
         expected = new Task[0];
+        actual = todos.search("кино");
 
         Assertions.assertArrayEquals(actual, expected);
     }
